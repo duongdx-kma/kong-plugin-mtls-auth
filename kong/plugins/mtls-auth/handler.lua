@@ -1,4 +1,4 @@
-local BasePlugin = require("kong.plugins.base_plugin")
+-- local BasePlugin = require("kong.plugins.base_plugin")
 local set_header = kong.service.request.set_header
 
 -- utils
@@ -35,10 +35,15 @@ local function parse_dn (dn)
 	return t
 end
 
-local MtlsAuth = BasePlugin:extend()
 
-MtlsAuth.VERSION = "1.0.0"
-MtlsAuth.PRIORITY = 975
+local MtlsAuth = {
+  PRIORITY = 1000,
+  VERSION = "1.0.0",
+}
+
+-- local MtlsAuth = BasePlugin:extend()
+-- MtlsAuth.VERSION = "1.0.0"
+-- MtlsAuth.PRIORITY = 975
 
 function MtlsAuth:new()
     MtlsAuth.super.new(self, "mtls-auth")
